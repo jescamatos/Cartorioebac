@@ -15,7 +15,7 @@
 
    printf ("Digite o CPF a ser cadrastado: "); // coletando as informacões do usuario
    scanf ("%s", cpf); // refere-se as strings
-  strcpy(arquivo, cpf); // reponsavél por cuidar dos valores das string 
+   strcpy(arquivo, cpf); // reponsavél por copiar os valores das string 
 
    FILE *file; // criar o arquivo
    file = fopen(arquivo, "w"); //criar arquivo o "w" significa escrever
@@ -37,13 +37,13 @@
    fprintf (file,",");
    fclose (file);
 
-  printf("Digite o sobrenome a ser cadastrado: "); // responsáel por cuidar os valores do usuario
+   printf("Digite o sobrenome a ser cadastrado: "); // responsáel por cuidar os valores do usuario
 
-  scanf ("%s", sobrenome); // refece-se as strings
+   scanf ("%s", sobrenome); // refece-se as strings
 
-  file = fopen(arquivo, "a"); // responsavel por criar o arquivo o "a" signifca arquivar
-  fprintf (file, sobrenome); // responsavel por ler o arquivo
-  fclose (file); // responsavel por fechar o arquivo
+   file = fopen(arquivo, "a"); // responsavel por criar o arquivo o "a" signifca arquivar
+   fprintf (file, sobrenome); // responsavel por ler o arquivo
+   fclose (file); // responsavel por fechar o arquivo
   
    file = fopen (arquivo, "a"); // responsavel por criar o arquivo o "a" signifca arquivar
    fprintf (file,",");
@@ -59,8 +59,10 @@
    system ("pause"); // responsavel por pausar a tela
    
 }
+
+
    int consultar() // funcão responsavel por consultar os dados do úsuario
-{
+   {
    
     setlocale ( LC_ALL, "protuguese"); // definição de linguagem
      
@@ -78,91 +80,106 @@
     if (file == NULL) // responsavel por 
     {
     
-    printf ("Não foi possivel abrir o arquivo, não localizado!\n ");    
+    printf ("\nNão foi possivel abrir o arquivo, não localizado!\n\n ");    
 
-    }
-    while (fgets(conteudo, 200, file) != NULL)
-    {
+        }
+       while (fgets(conteudo, 200, file) != NULL)
+       {
         printf( "\nEssas são as informacões do usuario: \n\n");
         printf ("%s", conteudo);
         printf ("\n\n");
-     }
-      system("pause");
-    
-    
-}
+       }
 
-  int deletar()
 
-{
-     char cpf[40];
+        fclose(file);
+        system("pause");
      
-     printf("Digite o CPF a ser deletado: \n");
-     scanf ("%s", cpf);
-     system("pause");
-     
-      remove (cpf);
+   }
 
-     FILE *file;
-     file = fopen (cpf, "r");
-     fclose (file);
+        int deletar()
+
+      {
+        char cpf[40];
+     
+       printf("Digite o CPF a ser deletado: \n");
+       scanf ("%s", cpf);
+       system("pause");
+     
+       remove (cpf);
+
+       FILE *file;
+        file = fopen (cpf, "r");
+       fclose (file);
 
        if (file == NULL) 
-     {
+       {
         printf ("usúario não se encontra no sistema! \n");
         system("pause");
-     }
+       }
+      }
+        int main()
+      {
+        int opcao=0; //definições de Variaveis
+        int laco=1;
+        char senhadigitada[]="a";
+        int comparacao;
 
+        printf (" -- Cartório da Ebac -- \n\n");
+        printf ("Login de Administrador!\n\n Digite a sua senha:");
+        scanf ("%s", senhadigitada);
 
-}
+       comparacao =  strcmp (senhadigitada, "admin");
 
-int main()
-{
-    int opcao=0;
-    int laco=1;
-    for (laco=1; laco=1;)
-    {
+       if (comparacao == 0)
+         {
+          system("cls");
+          for (laco=1; laco=1;)
+          {
     
-       system ("cls"); // limpar a tela
+          system ("cls"); // limpar a tela
 
-     setlocale ( LC_ALL, "protuguese"); // definição de linguagem
+          setlocale ( LC_ALL, "protuguese"); // definição de linguagem
 
-     printf (" -- Cartório da Ebac -- \n\n "); // inicio do menu
-     printf ("Escolha a opção desejada no menu \n\n");
-     printf ("\t-1 Registro de Nomes\n");
-     printf ("\t-2 Consultar nomes\n");
-     printf ("\t-3 Excluír Nomes\n\n"); //fim do menu
-     printf ("\t-4 Sair do sistema \n\n");
-     printf ("Opção:");
-     scanf ("%d", &opcao); // armazenando a escolha do usuario
+          printf (" -- Cartório da Ebac -- \n\n "); // inicio do menu
+          printf ("Escolha a opção desejada no menu \n\n");
+          printf ("\t-1 Registro de Nomes\n");
+          printf ("\t-2 Consultar nomes\n");
+          printf ("\t-3 Excluír Nomes\n\n"); //fim do menu
+          printf ("\t-4 Sair do sistema \n\n");
+          printf ("Opção:");
+          scanf ("%d", &opcao); // armazenando a escolha do usuario
    
-     system ("cls"); // responsável por limpar a tela
+           system ("cls"); // responsável por limpar a tela
 
-        switch (opcao) //inicio das selecões 
-       {
-        case 1: // camada de funcões
-         registro();
-        break;
+           switch (opcao) //inicio das selecões 
+            {   
+             case 1: // camada de funcões
+             registro();
+             break;
         
-        case 2:
-        consultar();
-        break;
+             case 2:
+             consultar();
+             break;
 
-        case 3:
-        deletar();
-        break;
+             case 3:
+             deletar();
+             break;
         
-        case 4:
-        printf("Obrigado por ultilizar o sistema!\n\n");
-        return 0;
-        break;
+             case 4:
+             printf("Obrigado por ultilizar o sistema!\n\n");
+             return 0;
+             break;
 
-        default:
-        printf ("Essa opção não está disponivel\n");
-        system("pause");
-        break;
-     }
+             default:
+             printf ("Essa opção não está disponivel\n");
+             system("pause");
+             break;
+            }
 
-     } 
-   
-     }
+           } 
+         
+          } 
+          
+          else 
+          printf ( "Senha digitada incorreta!\n\n");
+       }
